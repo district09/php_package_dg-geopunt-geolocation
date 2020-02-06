@@ -1,10 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Bootstrap file for all examples.
  */
+
+declare(strict_types=1);
 
 // Error reporting.
 error_reporting(E_ALL);
