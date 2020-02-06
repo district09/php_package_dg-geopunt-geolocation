@@ -1,0 +1,30 @@
+language: php
+
+php:
+  - 7.2
+  - 7.3
+
+env:
+  - API_CLIENT_VERSION=^1.1
+    VALUE_VERSION=^1.1
+  - API_CLIENT_VERSION=^2.0
+    VALUE_VERSION=^2.0
+
+sudo: false
+
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+install:
+  - composer config github-oauth.github.com ${GITHUB_TOKEN}
+  - composer require "digipolisgent/api-client:${API_CLIENT_VERSION}" --no-update
+  - composer require "digipolisgent/value:${VALUE_VERSION}" --no-update
+  - composer install -n --dev
+
+script:
+  - vendor/bin/grumphp run
+
+after_script:
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
