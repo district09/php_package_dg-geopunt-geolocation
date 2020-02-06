@@ -49,12 +49,12 @@ information.
 [github-badge]: https://img.shields.io/badge/github-DigipolisGent_Geopunt_Geolocation-blue.svg?logo=github
 [github-link]: https://github.com/digipolisgent/php_package_dg-geopunt-geolocation
 
-[travis-master-badge]: https://travis-ci.com/digipolisgent/php_package_dg-geopunt-geolocation.svg?token=?&branch=master "Travis build master"
+[travis-master-badge]: https://travis-ci.com/digipolisgent/php_package_dg-geopunt-geolocation.svg?branch=master "Travis build master"
 [travis-master-link]: https://travis-ci.com/digipolisgent/php_package_dg-geopunt-geolocation/branches
-[travis-develop-badge]: https://travis-ci.com/digipolisgent/php_package_dg-geopunt-geolocation.svg?token=?&branch=develop "Travis build develop"
+[travis-develop-badge]: https://travis-ci.com/digipolisgent/php_package_dg-geopunt-geolocation.svg?branch=develop "Travis build develop"
 [travis-develop-link]: https://travis-ci.com/digipolisgent/php_package_dg-geopunt-geolocation/branches
 
-[codeclimate-maint-badge]: https://api.codeclimate.com/v1/badges/?/maintainability
+[codeclimate-maint-badge]: https://api.codeclimate.com/v1/badges/a814025cd03bece885f8/maintainability
 [codeclimate-maint-link]: https://codeclimate.com/github/digipolisgent/php_package_dg-geopunt-geolocation/maintainability
-[codeclimate-cover-badge]: https://api.codeclimate.com/v1/badges/?/test_coverage
+[codeclimate-cover-badge]: https://api.codeclimate.com/v1/badges/a814025cd03bece885f8/test_coverage
 [codeclimate-cover-link]: https://codeclimate.com/github/digipolisgent/php_package_dg-geopunt-geolocation/test_coverage

@@ -1,10 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Example how to get a list of address suggestions.
  */
+
+declare(strict_types=1);
 
 use DigipolisGent\API\Client\Configuration\Configuration;
 use DigipolisGent\Geopunt\Geolocation\Client\Client;

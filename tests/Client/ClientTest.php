@@ -9,7 +9,7 @@ use DigipolisGent\API\Client\Exception\HandlerNotFound;
 use DigipolisGent\API\Client\Handler\HandlerInterface;
 use DigipolisGent\API\Client\Response\ResponseInterface;
 use DigipolisGent\Geopunt\Geolocation\Client\Client;
-use GuzzleHttp\ClientInterface as GuzzleClientInterface;
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -74,7 +74,7 @@ class ClientTest extends TestCase
         $request->withHeader('Content-Length', 3)->willReturn($request->reveal());
         $this->request = $request->reveal();
 
-        $guzzle = $this->prophesize(GuzzleClientInterface::class);
+        $guzzle = $this->prophesize(GuzzleClient::class);
         $guzzle->send(Argument::any())->willReturn($this->psrResponse);
         $this->guzzle = $guzzle->reveal();
 
@@ -118,7 +118,7 @@ class ClientTest extends TestCase
     public function guzzleExceptionBubbleUp(): void
     {
         $exception = new ClientException('', $this->request, $this->psrResponse);
-        $guzzle = $this->prophesize(GuzzleClientInterface::class);
+        $guzzle = $this->prophesize(GuzzleClient::class);
         $guzzle->send(Argument::any())->willThrow($exception);
 
         $client = new Client($guzzle->reveal(), $this->configuration);
