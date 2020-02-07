@@ -6,8 +6,10 @@ namespace DigipolisGent\Geopunt\Geolocation;
 
 use DigipolisGent\API\Service\ServiceAbstract;
 use DigipolisGent\Geopunt\Geolocation\Filter\Filters;
+use DigipolisGent\Geopunt\Geolocation\Filter\Lambert72Filter;
 use DigipolisGent\Geopunt\Geolocation\Filter\NumberOfItemsFilter;
 use DigipolisGent\Geopunt\Geolocation\Filter\SearchStringFilter;
+use DigipolisGent\Geopunt\Geolocation\Filter\Wgs84Filter;
 use DigipolisGent\Geopunt\Geolocation\Request\LocationRequest;
 use DigipolisGent\Geopunt\Geolocation\Request\SuggestionRequest;
 use DigipolisGent\Geopunt\Geolocation\Value\Locations;
@@ -44,6 +46,44 @@ final class Geolocation extends ServiceAbstract implements GeolocationInterface
 
         $filters = new Filters(
             new SearchStringFilter($search),
+            new NumberOfItemsFilter($limit)
+        );
+        $request = new LocationRequest($filters);
+
+        return $this->client()->send($request)->locations();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function locationsByLatitudeLongitude(
+        float $latitude,
+        float $longitude,
+        int $limit
+    ): Locations {
+        $this->limitIsWithinBoundaries($limit, 5);
+
+        $filters = new Filters(
+            Wgs84Filter::fromLatitudeLongitude($latitude, $longitude),
+            new NumberOfItemsFilter($limit)
+        );
+        $request = new LocationRequest($filters);
+
+        return $this->client()->send($request)->locations();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function locationsByXY(
+        float $xPosition,
+        float $yPosition,
+        int $limit
+    ): Locations {
+        $this->limitIsWithinBoundaries($limit, 5);
+
+        $filters = new Filters(
+            Lambert72Filter::fromXY($xPosition, $yPosition),
             new NumberOfItemsFilter($limit)
         );
         $request = new LocationRequest($filters);

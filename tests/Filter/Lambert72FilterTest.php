@@ -20,10 +20,10 @@ class Lambert72FilterTest extends TestCase
      */
     public function canBeCreatedFromLambert72PointValue(): void
     {
-        $point = new Lambert72Point(10, 20);
+        $point = new Lambert72Point(10.1, 20.1);
         $filter = Lambert72Filter::fromLambert72Point($point);
 
-        $this->assertSame('10,20', $filter->value());
+        $this->assertSame('10.1,20.1', $filter->value());
     }
 
 
@@ -34,8 +34,8 @@ class Lambert72FilterTest extends TestCase
      */
     public function canBeCreatedFromXYCoordinates(): void
     {
-        $filter = Lambert72Filter::fromXY(10, 20);
-        $this->assertSame('10,20', $filter->value());
+        $filter = Lambert72Filter::fromXY(10.1, 20.1);
+        $this->assertSame('10.1,20.1', $filter->value());
     }
 
     /**

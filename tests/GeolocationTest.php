@@ -7,8 +7,10 @@ namespace DigipolisGent\Tests\Geopunt\Geolocation;
 use DigipolisGent\API\Client\ClientInterface;
 use DigipolisGent\API\Client\Response\ResponseInterface;
 use DigipolisGent\Geopunt\Geolocation\Filter\Filters;
+use DigipolisGent\Geopunt\Geolocation\Filter\Lambert72Filter;
 use DigipolisGent\Geopunt\Geolocation\Filter\NumberOfItemsFilter;
 use DigipolisGent\Geopunt\Geolocation\Filter\SearchStringFilter;
+use DigipolisGent\Geopunt\Geolocation\Filter\Wgs84Filter;
 use DigipolisGent\Geopunt\Geolocation\Geolocation;
 use DigipolisGent\Geopunt\Geolocation\Request\LocationRequest;
 use DigipolisGent\Geopunt\Geolocation\Request\SuggestionRequest;
@@ -26,7 +28,7 @@ use Psr\Http\Message\RequestInterface;
 class GeolocationTest extends TestCase
 {
     /**
-     * Get suggestions based on the given query and amount.
+     * Get suggestions based on the given query and limit.
      *
      * An exception is thrown when the given limit is not within the boundaries.
      *
@@ -74,7 +76,7 @@ class GeolocationTest extends TestCase
      * @return array
      *   Each row contains:
      *   - string : Search string.
-     *   - int : The limit that should trigger the exception.
+     *   - int : The limit.
      *   - bool : Should trigger exception.
      */
     public function suggestionsProvider(): array
@@ -104,7 +106,7 @@ class GeolocationTest extends TestCase
     }
 
     /**
-     * Get location(s) based on the given query and amount.
+     * Get location(s) based on the given query and limit.
      *
      * An exception is thrown when the given limit is not within the boundaries.
      *
@@ -152,7 +154,7 @@ class GeolocationTest extends TestCase
      * @return array
      *   Each row contains:
      *   - string : Search string.
-     *   - int : The limit that should trigger the exception.
+     *   - int : The limit.
      *   - bool : Should trigger exception.
      */
     public function locationBySearchProvider(): array
@@ -175,6 +177,178 @@ class GeolocationTest extends TestCase
             ],
             'Exception when given limit is greater than 5' => [
                 'foobar',
+                6,
+                true,
+            ],
+        ];
+    }
+
+    /**
+     * Get location(s) based on the given lat-lon and limit.
+     *
+     * An exception is thrown when the given limit is not within the boundaries.
+     *
+     * @param float $latitude
+     *   The latitude to lookup.
+     * @param float $longitude
+     *   The longitude to lookup.
+     * @param int $limit
+     *   The limit to search by.
+     * @param bool $limitShouldTriggerException
+     *   Should the given limit trigger an exception.
+     *
+     * @dataProvider locationByLatitudeLongitudeProvider
+     *
+     * @test
+     */
+    public function locationsCanBeLoadedByLatitudeLongitude(
+        float $latitude,
+        float $longitude,
+        int $limit,
+        bool $limitShouldTriggerException
+    ): void {
+        $filters = new Filters(
+            Wgs84Filter::fromLatitudeLongitude($latitude, $longitude),
+            new NumberOfItemsFilter($limit)
+        );
+        $request = new LocationRequest($filters);
+
+        $locations = new Locations();
+        $response = new LocationResponse($locations);
+
+        $client = $this->createClientMock($request, $response);
+        $geolocation = new Geolocation($client);
+
+        if ($limitShouldTriggerException) {
+            $this->expectException(InvalidArgumentException::class);
+        }
+
+        $this->assertSame(
+            $locations,
+            $geolocation->locationsByLatitudeLongitude($latitude, $longitude, $limit)
+        );
+    }
+
+    /**
+     * Data provider to test getting the locations by search string.
+     *
+     * @return array
+     *   Each row contains:
+     *   - float : Latitude.
+     *   - float : Longitude.
+     *   - int : The limit.
+     *   - bool : Should trigger exception.
+     */
+    public function locationByLatitudeLongitudeProvider(): array
+    {
+        return [
+            'Exception when given limit is lower than 1' => [
+                51.1,
+                10.2,
+                0,
+                true,
+            ],
+            'No exception when given limit is equal to 1' => [
+                51.1,
+                10.2,
+                1,
+                false,
+            ],
+            'No exception when given limit is equal to 5' => [
+                51.1,
+                10.2,
+                5,
+                false,
+            ],
+            'Exception when given limit is greater than 5' => [
+                51.1,
+                10.2,
+                6,
+                true,
+            ],
+        ];
+    }
+
+    /**
+     * Get location(s) based on the given X-Y coordinates and limit.
+     *
+     * An exception is thrown when the given limit is not within the boundaries.
+     *
+     * @param float $xPosition
+     *   The latitude to lookup.
+     * @param float $yPosition
+     *   The longitude to lookup.
+     * @param int $limit
+     *   The limit to search by.
+     * @param bool $limitShouldTriggerException
+     *   Should the given limit trigger an exception.
+     *
+     * @dataProvider locationByXYProvider
+     *
+     * @test
+     */
+    public function locationsCanBeLoadedByXY(
+        float $xPosition,
+        float $yPosition,
+        int $limit,
+        bool $limitShouldTriggerException
+    ): void {
+        $filters = new Filters(
+            Lambert72Filter::fromXY($xPosition, $yPosition),
+            new NumberOfItemsFilter($limit)
+        );
+        $request = new LocationRequest($filters);
+
+        $locations = new Locations();
+        $response = new LocationResponse($locations);
+
+        $client = $this->createClientMock($request, $response);
+        $geolocation = new Geolocation($client);
+
+        if ($limitShouldTriggerException) {
+            $this->expectException(InvalidArgumentException::class);
+        }
+
+        $this->assertSame(
+            $locations,
+            $geolocation->locationsByXY($xPosition, $yPosition, $limit)
+        );
+    }
+
+    /**
+     * Data provider to test getting the locations by search string.
+     *
+     * @return array
+     *   Each row contains:
+     *   - float : Latitude.
+     *   - float : Longitude.
+     *   - int : The limit.
+     *   - bool : Should trigger exception.
+     */
+    public function locationByXYProvider(): array
+    {
+        return [
+            'Exception when given limit is lower than 1' => [
+                51.1,
+                10.2,
+                0,
+                true,
+            ],
+            'No exception when given limit is equal to 1' => [
+                51.1,
+                10.2,
+                1,
+                false,
+            ],
+            'No exception when given limit is equal to 5' => [
+                51.1,
+                10.2,
+                5,
+                false,
+            ],
+            'Exception when given limit is greater than 5' => [
+                51.1,
+                10.2,
                 6,
                 true,
             ],

@@ -21,7 +21,7 @@ final class Wgs84Filter extends AbstractFilter
     public static function fromWgs84Point(Wgs84Point $point): Wgs84Filter
     {
         return new static(
-            sprintf('%d,%d', $point->yPosition(), $point->xPosition())
+            sprintf('%s,%s', $point->yPosition(), $point->xPosition())
         );
     }
 

@@ -20,10 +20,10 @@ class Wgs84FilterTest extends TestCase
      */
     public function canBeCreatedFromWgs84Point(): void
     {
-        $point = new Wgs84Point(20, 10);
+        $point = new Wgs84Point(20.1, 10.1);
         $filter = Wgs84Filter::fromWgs84Point($point);
 
-        $this->assertSame('10,20', $filter->value());
+        $this->assertSame('10.1,20.1', $filter->value());
     }
 
     /**
@@ -33,8 +33,8 @@ class Wgs84FilterTest extends TestCase
      */
     public function canBeCreatedFromLatitudeLongitude(): void
     {
-        $filter = Wgs84Filter::fromLatitudeLongitude(10, 20);
-        $this->assertSame('10,20', $filter->value());
+        $filter = Wgs84Filter::fromLatitudeLongitude(10.1, 20.1);
+        $this->assertSame('10.1,20.1', $filter->value());
     }
 
     /**

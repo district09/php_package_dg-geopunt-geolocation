@@ -21,7 +21,7 @@ final class Lambert72Filter extends AbstractFilter
     public static function fromLambert72Point(Lambert72Point $point): Lambert72Filter
     {
         return new static(
-            sprintf('%d,%d', $point->xPosition(), $point->yPosition())
+            sprintf('%s,%s', $point->xPosition(), $point->yPosition())
         );
     }
 

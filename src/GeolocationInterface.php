@@ -41,4 +41,36 @@ interface GeolocationInterface extends CacheableInterface, LoggableInterface
      *   Collection of location values.
      */
     public function locationsBySearch(string $search, int $limit): Locations;
+
+    /**
+     * Get the locations by WGS84 latititude & longitude values.
+     *
+     * @param float $latitude
+     *   The latitude to search by.
+     * @param float $longitude
+     *   The longitude to search by.
+     * @param int $limit
+     *   The maximum number of locations to return.
+     *   This amount should be greater than 0 and less than or equal to 5.
+     *
+     * @return \DigipolisGent\Geopunt\Geolocation\Value\Locations
+     *   Collection of location values.
+     */
+    public function locationsByLatitudeLongitude(float $latitude, float $longitude, int $limit): Locations;
+
+    /**
+     * Get the locations by Lambert 72 x & y values.
+     *
+     * @param float $xPosition
+     *   The x value to search by.
+     * @param float $yPosition
+     *   The y value to search by.
+     * @param int $limit
+     *   The maximum number of locations to return.
+     *   This amount should be greater than 0 and less than or equal to 5.
+     *
+     * @return \DigipolisGent\Geopunt\Geolocation\Value\Locations
+     *   Collection of location values.
+     */
+    public function locationsByXY(float $xPosition, float $yPosition, int $limit): Locations;
 }
