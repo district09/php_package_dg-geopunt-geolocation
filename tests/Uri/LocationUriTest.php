@@ -23,5 +23,4 @@ class LocationUriTest extends TestCase
         $uri = new LocationUri();
         $this->assertEquals('Location', $uri->getUri());
     }
-
 }
