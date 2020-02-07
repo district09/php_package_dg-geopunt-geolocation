@@ -4,40 +4,16 @@ declare(strict_types=1);
 
 namespace DigipolisGent\Geopunt\Geolocation\Uri;
 
-use DigipolisGent\API\Client\Uri\UriInterface;
-use DigipolisGent\Geopunt\Geolocation\Value\Lookup;
-
 /**
- * Uri where the addresses (adressen) methods are located.
+ * Uri to lookup suggestions based on a search string.
  */
-class SuggestionUri implements UriInterface
+class SuggestionUri extends AbstractUriWithQuery
 {
-    /**
-     * The lookup value to create the URI for.
-     *
-     * @var \DigipolisGent\Geopunt\Geolocation\Value\Lookup
-     */
-    private $lookup;
-
-    /**
-     * Create new URI from lookup.
-     *
-     * @param \DigipolisGent\Geopunt\Geolocation\Value\Lookup $lookup
-     */
-    public function __construct(Lookup $lookup)
-    {
-        $this->lookup = $lookup;
-    }
-
     /**
      * @inheritDoc
      */
-    public function getUri(): string
+    protected function getPath(): string
     {
-        return sprintf(
-            'Suggestion?q=%s&c=%d',
-            $this->lookup->query(),
-            $this->lookup->amount()
-        );
+        return 'Suggestion';
     }
 }

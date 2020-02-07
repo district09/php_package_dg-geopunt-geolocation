@@ -16,13 +16,14 @@ interface GeolocationInterface extends CacheableInterface, LoggableInterface
     /**
      * Get the suggestions based on query string and maximum amount of results.
      *
-     * @param string $query
+     * @param string $search
      *   The query string (partial address) to lookup the suggestions.
-     * @param int $amount
+     * @param int $limit
      *   The maximum number of suggestions to return.
+     *   This amount should be greater than 0 and less than or equal to 25.
      *
      * @return \DigipolisGent\Geopunt\Geolocation\Value\Suggestions
      *   Collection of suggestion values.
      */
-    public function suggestions(string $query, int $amount): Suggestions;
+    public function suggestions(string $search, int $limit): Suggestions;
 }
