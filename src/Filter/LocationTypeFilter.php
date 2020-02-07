@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace DigipolisGent\Geopunt\Geolocation\Filter;
 
 /**
- * Filter to search records by the given string.
+ * Filter by the location type string.
  */
-final class SearchStringFilter extends AbstractFilter
+final class LocationTypeFilter extends AbstractFilter
 {
     /**
      * @inheritDoc
      */
     public function name(): string
     {
-        return 'q';
+        return 'type';
     }
 }

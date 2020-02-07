@@ -7,6 +7,7 @@ namespace DigipolisGent\Tests\Geopunt\Geolocation\Service;
 use DigipolisGent\API\Client\ClientInterface;
 use DigipolisGent\Geopunt\Geolocation\Geolocation;
 use DigipolisGent\Geopunt\Geolocation\GeolocationFactory;
+use DigipolisGent\Geopunt\Geolocation\Handler\LocationHandler;
 use DigipolisGent\Geopunt\Geolocation\Handler\SuggestionHandler;
 use PHPUnit\Framework\TestCase;
 
@@ -25,6 +26,9 @@ class GeolocationFactoryTest extends TestCase
         $clientMock = $this->prophesize(ClientInterface::class);
         $clientMock
             ->addHandler(new SuggestionHandler())
+            ->shouldBeCalled();
+        $clientMock
+            ->addHandler(new LocationHandler())
             ->shouldBeCalled();
         $client = $clientMock->reveal();
 

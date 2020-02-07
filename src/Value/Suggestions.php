@@ -11,7 +11,6 @@ use DigipolisGent\Value\CollectionAbstract;
  */
 final class Suggestions extends CollectionAbstract
 {
-
     /**
      * Create the collection from suggestion objects.
      *
@@ -27,6 +26,6 @@ final class Suggestions extends CollectionAbstract
      */
     public function __toString(): string
     {
-        return implode(';', $this->values);
+        return implode(PHP_EOL, $this->values);
     }
 }

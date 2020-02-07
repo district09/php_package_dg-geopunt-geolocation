@@ -6,6 +6,7 @@ namespace DigipolisGent\Geopunt\Geolocation;
 
 use DigipolisGent\API\Cache\CacheableInterface;
 use DigipolisGent\API\Logger\LoggableInterface;
+use DigipolisGent\Geopunt\Geolocation\Value\Locations;
 use DigipolisGent\Geopunt\Geolocation\Value\Suggestions;
 
 /**
@@ -26,4 +27,18 @@ interface GeolocationInterface extends CacheableInterface, LoggableInterface
      *   Collection of suggestion values.
      */
     public function suggestions(string $search, int $limit): Suggestions;
+
+    /**
+     * Get the locations based on query string and maximum amount of results.
+     *
+     * @param string $search
+     *   The query string (partial address) to lookup the locations.
+     * @param int $limit
+     *   The maximum number of locations to return.
+     *   This amount should be greater than 0 and less than or equal to 5.
+     *
+     * @return \DigipolisGent\Geopunt\Geolocation\Value\Locations
+     *   Collection of location values.
+     */
+    public function locationsBySearch(string $search, int $limit): Locations;
 }

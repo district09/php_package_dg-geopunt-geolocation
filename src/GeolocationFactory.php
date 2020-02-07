@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace DigipolisGent\Geopunt\Geolocation;
 
 use DigipolisGent\API\Client\ClientInterface;
+use DigipolisGent\Geopunt\Geolocation\Handler\LocationHandler;
 use DigipolisGent\Geopunt\Geolocation\Handler\SuggestionHandler;
 
 /**
@@ -20,6 +21,7 @@ final class GeolocationFactory
     public static function create(ClientInterface $client): GeolocationInterface
     {
         $client->addHandler(new SuggestionHandler());
+        $client->addHandler(new LocationHandler());
 
         return new Geolocation($client);
     }

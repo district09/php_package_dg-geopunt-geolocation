@@ -12,7 +12,6 @@ use DigipolisGent\Value\ValueInterface;
  */
 final class Suggestion extends ValueAbstract
 {
-
     /**
      * The suggestion string.
      *

@@ -8,7 +8,7 @@ use DigipolisGent\API\Client\Response\ResponseInterface;
 use DigipolisGent\Geopunt\Geolocation\Value\Suggestions;
 
 /**
- * Response containing the address detail value.
+ * Response containing the suggestions collection.
  */
 final class SuggestionResponse implements ResponseInterface
 {

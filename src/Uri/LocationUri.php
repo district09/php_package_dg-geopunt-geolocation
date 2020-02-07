@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace DigipolisGent\Geopunt\Geolocation\Uri;
 
 /**
- * Uri to lookup suggestions based on given filters.
+ * Uri to lookup locations based on a given filters.
  */
-class SuggestionUri extends AbstractUriWithQuery
+class LocationUri extends AbstractUriWithQuery
 {
     /**
      * @inheritDoc
      */
     protected function getPath(): string
     {
-        return 'Suggestion';
+        return 'Location';
     }
 }

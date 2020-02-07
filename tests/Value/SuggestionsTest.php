@@ -14,11 +14,11 @@ use PHPUnit\Framework\TestCase;
 class SuggestionsTest extends TestCase
 {
     /**
-     * Casting to string returns all suggestions separated by a semicolon.
+     * Casting to string returns all suggestions separated by a newline.
      *
      * @test
      */
-    public function castToStringReturnsAllSuggestionsSeparatedBySemicolon(): void
+    public function castToStringReturnsAllSuggestionsSeparatedByNewline(): void
     {
         $suggestions = new Suggestions(
             new Suggestion('9000 Gent'),
@@ -26,7 +26,7 @@ class SuggestionsTest extends TestCase
         );
 
         $this->assertEquals(
-            '9000 Gent;Bellevue 1, 9000 Gent',
+            "9000 Gent\nBellevue 1, 9000 Gent",
             (string) $suggestions
         );
     }
