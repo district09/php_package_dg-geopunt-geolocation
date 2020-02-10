@@ -71,7 +71,7 @@ final class Location extends ValueAbstract implements LocationInterface
      *
      * @return \DigipolisGent\Geopunt\Geolocation\Value\LocationId
      */
-    public function id(): LocationId
+    public function locationId(): LocationId
     {
         return $this->locationId;
     }
@@ -133,7 +133,7 @@ final class Location extends ValueAbstract implements LocationInterface
     {
         /** @var \DigipolisGent\Geopunt\Geolocation\Value\Location $object */
         return $this->sameValueTypeAs($object)
-            && $this->id()->sameValueAs($object->id())
+            && $this->locationId()->sameValueAs($object->locationId())
             && $this->type() === $object->type()
             && $this->address()->sameValueAs($object->address())
             && $this->position()->sameValueAs($object->position())

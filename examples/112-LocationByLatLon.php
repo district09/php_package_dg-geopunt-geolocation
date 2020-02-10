@@ -45,7 +45,7 @@ if ($count) {
         $table = new Table($output);
         $table->addRows(
             [
-                ['ID', (string) $location->id()],
+                ['ID', (string) $location->locationId()],
                 ['Street name', $location->address()->streetName()],
                 ['House number', $location->address()->houseNumber()],
                 ['Postal code', $location->address()->postalCode()],

@@ -43,7 +43,7 @@ class LocationTest extends TestCase
             $boundingBox
         );
 
-        $this->assertSame($locationId, $location->id());
+        $this->assertSame($locationId, $location->locationId());
         $this->assertSame('location_type', $location->type());
         $this->assertSame($address, $location->address());
         $this->assertSame($position, $location->position());

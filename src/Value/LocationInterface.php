@@ -18,7 +18,7 @@ interface LocationInterface extends ValueInterface
      *
      * @return \DigipolisGent\Geopunt\Geolocation\Value\LocationId
      */
-    public function id(): LocationId;
+    public function locationId(): LocationId;
 
     /**
      * Get the location type.
