@@ -9,6 +9,7 @@ use DigipolisGent\API\Client\Response\ResponseInterface;
 use DigipolisGent\Geopunt\Geolocation\Filter\Filters;
 use DigipolisGent\Geopunt\Geolocation\Filter\Lambert72Filter;
 use DigipolisGent\Geopunt\Geolocation\Filter\NumberOfItemsFilter;
+use DigipolisGent\Geopunt\Geolocation\Filter\RestrictByTypeFilter;
 use DigipolisGent\Geopunt\Geolocation\Filter\SearchStringFilter;
 use DigipolisGent\Geopunt\Geolocation\Filter\Wgs84Filter;
 use DigipolisGent\Geopunt\Geolocation\Geolocation;
@@ -77,6 +78,7 @@ class GeolocationTest extends TestCase
      *   Each row contains:
      *   - string : Search string.
      *   - int : The limit.
+     *   - string|null : The optional restrict by type value.
      *   - bool : Should trigger exception.
      */
     public function suggestionsProvider(): array
@@ -114,6 +116,8 @@ class GeolocationTest extends TestCase
      *   The search string.
      * @param int $limit
      *   The limit to search by.
+     * @param string|null $restrictByType
+     *   Restrict the search by the given type.
      * @param bool $limitShouldTriggerException
      *   Should the given limit trigger an exception.
      *
@@ -124,13 +128,18 @@ class GeolocationTest extends TestCase
     public function locationsCanBeSearchedWithLimit(
         string $search,
         int $limit,
+        ?string $restrictByType,
         bool $limitShouldTriggerException
     ): void {
-        $filters = new Filters(
+        $filters = [
             new SearchStringFilter($search),
-            new NumberOfItemsFilter($limit)
-        );
-        $request = new LocationRequest($filters);
+            new NumberOfItemsFilter($limit),
+        ];
+        if ($restrictByType) {
+            $filters[] = new RestrictByTypeFilter($restrictByType);
+        }
+
+        $request = new LocationRequest(new Filters(...$filters));
 
         $locations = new Locations();
         $response = new LocationResponse($locations);
@@ -144,7 +153,7 @@ class GeolocationTest extends TestCase
 
         $this->assertSame(
             $locations,
-            $geolocation->locationsBySearch($search, $limit)
+            $geolocation->locationsBySearch($search, $limit, $restrictByType)
         );
     }
 
@@ -155,6 +164,7 @@ class GeolocationTest extends TestCase
      *   Each row contains:
      *   - string : Search string.
      *   - int : The limit.
+     *   - string|null : Limit the results by given type.
      *   - bool : Should trigger exception.
      */
     public function locationBySearchProvider(): array
@@ -163,21 +173,25 @@ class GeolocationTest extends TestCase
             'Exception when given limit is lower than 1' => [
                 'foobar',
                 0,
+                null,
                 true,
             ],
             'No exception when given limit is equal to 1' => [
                 'foobar',
                 1,
+                null,
                 false,
             ],
             'No exception when given limit is equal to 5' => [
                 'foobar',
                 5,
+                RestrictByTypeFilter::HOUSENUMBER,
                 false,
             ],
             'Exception when given limit is greater than 5' => [
                 'foobar',
                 6,
+                null,
                 true,
             ],
         ];

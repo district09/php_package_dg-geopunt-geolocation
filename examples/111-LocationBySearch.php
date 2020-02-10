@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 use DigipolisGent\API\Client\Configuration\Configuration;
 use DigipolisGent\Geopunt\Geolocation\Client\Client;
+use DigipolisGent\Geopunt\Geolocation\Filter\RestrictByTypeFilter;
 use DigipolisGent\Geopunt\Geolocation\GeolocationFactory;
 use Symfony\Component\Console\Helper\Table;
 
@@ -28,7 +29,11 @@ printStep('Create the Service wrapper.');
 $service = GeolocationFactory::create($client);
 
 printStep('Get locations.');
-$locations = $service->locationsBySearch($locationBySearch, $locationLimit);
+$locations = $service->locationsBySearch(
+    $locationBySearch,
+    $locationLimit,
+    RestrictByTypeFilter::HOUSENUMBER
+);
 
 $count = $locations->getIterator()->count();
 
