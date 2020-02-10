@@ -36,11 +36,17 @@ interface GeolocationInterface extends CacheableInterface, LoggableInterface
      * @param int $limit
      *   The maximum number of locations to return.
      *   This amount should be greater than 0 and less than or equal to 5.
+     * @param string|null $restrictByType
+     *   Optionaly restrict the location(s) by the field type.
+     *   The allowed types are defined in Filter\RestrictByTypeFilter:
+     *   - RestrictByTypeFilter::MUNICIPALITY_NAME
+     *   - RestrictByTypeFilter::STREETNAME
+     *   - RestrictByTypeFilter::HOUSENUMBER
      *
      * @return \DigipolisGent\Geopunt\Geolocation\Value\Locations
      *   Collection of location values.
      */
-    public function locationsBySearch(string $search, int $limit): Locations;
+    public function locationsBySearch(string $search, int $limit, ?string $restrictByType = null): Locations;
 
     /**
      * Get the locations by WGS84 latititude & longitude values.

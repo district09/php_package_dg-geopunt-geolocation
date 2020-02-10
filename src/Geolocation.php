@@ -8,6 +8,7 @@ use DigipolisGent\API\Service\ServiceAbstract;
 use DigipolisGent\Geopunt\Geolocation\Filter\Filters;
 use DigipolisGent\Geopunt\Geolocation\Filter\Lambert72Filter;
 use DigipolisGent\Geopunt\Geolocation\Filter\NumberOfItemsFilter;
+use DigipolisGent\Geopunt\Geolocation\Filter\RestrictByTypeFilter;
 use DigipolisGent\Geopunt\Geolocation\Filter\SearchStringFilter;
 use DigipolisGent\Geopunt\Geolocation\Filter\Wgs84Filter;
 use DigipolisGent\Geopunt\Geolocation\Request\LocationRequest;
@@ -40,15 +41,19 @@ final class Geolocation extends ServiceAbstract implements GeolocationInterface
     /**
      * @inheritDoc
      */
-    public function locationsBySearch(string $search, int $limit): Locations
+    public function locationsBySearch(string $search, int $limit, ?string $restrictByType = null): Locations
     {
         $this->limitIsWithinBoundaries($limit, 5);
 
-        $filters = new Filters(
+        $filters = [
             new SearchStringFilter($search),
-            new NumberOfItemsFilter($limit)
-        );
-        $request = new LocationRequest($filters);
+            new NumberOfItemsFilter($limit),
+        ];
+        if ($restrictByType) {
+            $filters[] = new RestrictByTypeFilter($restrictByType);
+        }
+
+        $request = new LocationRequest(new Filters(...$filters));
 
         return $this->client()->send($request)->locations();
     }
