@@ -8,6 +8,7 @@ reverse geocoding within the regions of Flanders and Brussels.
 
 [![Github][github-badge]][github-link]
 [![License][license-badge]][license-link]
+[![Packagist][packagist-version-badge]][packagist-version-link]
 
 [![Build Status Master][travis-master-badge]][travis-master-link]
 [![Build Status Develop][travis-develop-badge]][travis-develop-link]
@@ -52,6 +53,9 @@ information.
 
 [license-badge]: https://img.shields.io/github/license/digipolisgent/php_package_dg-geopunt-geolocation?style=flat-square
 [license-link]: LICENSE.md
+
+[packagist-version-badge]: https://img.shields.io/packagist/v/digipolisgent/geopunt-geolocation?style=flat-square&include_prereleases
+[packagist-version-link]: https://packagist.org/packages/digipolisgent/geopunt-geolocation
 
 [travis-master-badge]: https://img.shields.io/travis/com/digipolisgent/php_package_dg-geopunt-geolocation/master.svg?label=master&logo=travis&style=flat-square
 [travis-master-link]: https://travis-ci.com/digipolisgent/php_package_dg-geopunt-geolocation/branches
