@@ -12,7 +12,7 @@ use DigipolisGent\Geopunt\Geolocation\Response\SuggestionResponse;
 use Psr\Http\Message as Psr;
 
 /**
- * Handles the AddressDetail request.
+ * Handles the Suggestion request.
  */
 final class SuggestionHandler implements HandlerInterface
 {
