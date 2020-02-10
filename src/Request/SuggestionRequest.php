@@ -4,23 +4,23 @@ declare(strict_types=1);
 
 namespace DigipolisGent\Geopunt\Geolocation\Request;
 
+use DigipolisGent\Geopunt\Geolocation\Filter\Filters;
 use DigipolisGent\Geopunt\Geolocation\Uri\SuggestionUri;
-use DigipolisGent\Geopunt\Geolocation\Value\Lookup;
 
 /**
- * Request to get suggestions based on given lookup.
+ * Request to get suggestions based on given filters.
  */
 final class SuggestionRequest extends AbstractJsonRequest
 {
     /**
-     * Create a new address detail request.
+     * Create a new suggestion request.
      *
-     * @param \DigipolisGent\Geopunt\Geolocation\Value\Lookup $lookup
+     * @param \DigipolisGent\Geopunt\Geolocation\Filter\Filters $filters
      */
-    public function __construct(Lookup $lookup)
+    public function __construct(Filters $filters)
     {
         parent::__construct(
-            new SuggestionUri($lookup)
+            new SuggestionUri($filters)
         );
     }
 }

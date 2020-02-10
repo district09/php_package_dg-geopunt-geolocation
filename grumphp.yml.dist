@@ -10,7 +10,7 @@ parameters:
                 - "var_dump("
                 - "exit;"
         phpcpd:
-            exclude: ['tests' ,'vendor']
+            exclude: ['examples', 'tests' ,'vendor']
         phpcs: ~
         phpmd:
             whitelist_patterns:
