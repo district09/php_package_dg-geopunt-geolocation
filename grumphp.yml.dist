@@ -16,7 +16,7 @@ parameters:
             whitelist_patterns:
                 - /^src\/(.*)/
             ruleset:
-                - phpmd.xml.dist
+                - phpmd.xml
         phpunit: ~
         phpversion:
             project: '7.2'
