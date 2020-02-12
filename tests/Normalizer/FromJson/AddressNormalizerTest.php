@@ -29,15 +29,15 @@ class AddressNormalizerTest extends TestCase
 EOT;
 
     /**
-     * Json data to test where house number is empty.
+     * Json data to test where values are empty.
      *
      * @var string
      */
     private $jsonWithoutHouseNumber = <<<EOT
 {
-    "Municipality": "Zonhoven",
-    "Zipcode": "3120",
-    "Thoroughfarename": "Trambergstraat",
+    "Municipality": null,
+    "Zipcode": null,
+    "Thoroughfarename": null,
     "Housenumber": null
 }
 EOT;
@@ -72,9 +72,9 @@ EOT;
     public function jsonDataWithoutHouseNumberCanBeNormalized(): void
     {
         $expected = new Address(
-            'Trambergstraat',
             '',
-            new Municipality('3120', 'Zonhoven')
+            '',
+            new Municipality('', '')
         );
 
         $normalizer = new AddressNormalizer();

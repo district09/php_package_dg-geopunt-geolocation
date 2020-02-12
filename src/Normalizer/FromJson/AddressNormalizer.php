@@ -22,11 +22,11 @@ final class AddressNormalizer
     public function normalize(object $jsonData): Address
     {
         return new Address(
-            $jsonData->Thoroughfarename,
+            $jsonData->Thoroughfarename ?? '',
             $jsonData->Housenumber ?? '',
             new Municipality(
-                $jsonData->Zipcode,
-                $jsonData->Municipality
+                $jsonData->Zipcode ?? '',
+                $jsonData->Municipality ?? ''
             )
         );
     }
