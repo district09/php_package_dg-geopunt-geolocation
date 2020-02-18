@@ -22,7 +22,11 @@ composer install
 
 * `101-Suggestions.php` : Get address suggestions based on a (partial) address
   string.
-* `111-Location.php` : Get the address details based on a address string.
+* `111-LocationBySearch.php` : Get the location details based on search string.
+* `112-LocationByLatLon.php` : Get the location details based on WGS84 latitide
+  & longitude coordinates.
+* `113-LocationByXY.php` : Get the location details based on Lambert72 X & Y
+  coordinates.
 
 ## Usage
 

@@ -6,7 +6,10 @@
         "services",
         "geopunt",
         "geolocation",
-        "agiv"
+        "agiv",
+        "Flanders",
+        "Vlaanderen",
+        "Brussels"
     ],
     "homepage": "https://github.com/digipolisgent/php_package_dg-geopunt-geolocation",
     "type": "library",

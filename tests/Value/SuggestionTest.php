@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace DigipolisGent\Tests\Geopunt\Geolocation\Value;
 
 use DigipolisGent\Geopunt\Geolocation\Value\Suggestion;
-use DigipolisGent\Value\ValueInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -29,9 +28,9 @@ class SuggestionTest extends TestCase
     /**
      * Values are the same if they share the same object type and parameters.
      *
-     * @param \DigipolisGent\Value\ValueInterface $value
+     * @param \DigipolisGent\Geopunt\Geolocation\Value\Suggestion $value
      *   The value to compare another object with.
-     * @param \DigipolisGent\Value\ValueInterface $otherValue
+     * @param \DigipolisGent\Geopunt\Geolocation\Value\Suggestion $otherValue
      *   The other object to compare.
      * @param bool $shouldBeTheSame
      *   Should both objects be identified as the same.
@@ -41,8 +40,8 @@ class SuggestionTest extends TestCase
      * @test
      */
     public function sameValueIfSameTypeAndParameters(
-        ValueInterface $value,
-        ValueInterface $otherValue,
+        Suggestion $value,
+        Suggestion $otherValue,
         bool $shouldBeTheSame
     ) {
         $this->assertEquals(
@@ -63,12 +62,12 @@ class SuggestionTest extends TestCase
     public function sameValueProvider(): array
     {
         return [
-            'Not the same if lookup string is different' => [
+            'Not the same if suggestion strings are different' => [
                 new Suggestion('foobar'),
                 new Suggestion('fizbaz'),
                 false,
             ],
-            'The same if lookup strings are the same' => [
+            'The same if suggestion strings are the same' => [
                 new Suggestion('foobar'),
                 new Suggestion('foobar'),
                 true,

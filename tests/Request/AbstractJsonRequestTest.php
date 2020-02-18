@@ -6,8 +6,8 @@ namespace DigipolisGent\Tests\Geopunt\Geolocation\Request;
 
 use DigipolisGent\API\Client\Request\AcceptType;
 use DigipolisGent\API\Client\Request\MethodType;
+use DigipolisGent\Geopunt\Geolocation\Filter\Filters;
 use DigipolisGent\Geopunt\Geolocation\Request\SuggestionRequest;
-use DigipolisGent\Geopunt\Geolocation\Value\Lookup;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -22,8 +22,8 @@ class AbstractJsonRequestTest extends TestCase
      */
     public function methodAndHeadersAreSetDuringConstruction(): void
     {
-        $lookup = new Lookup('bellevue gent', 5);
-        $request = new SuggestionRequest($lookup);
+        $filters = new Filters();
+        $request = new SuggestionRequest($filters);
 
         $this->assertEquals(MethodType::GET, $request->getMethod());
         $this->assertEquals([AcceptType::JSON], $request->getHeader('Accept'));

@@ -28,7 +28,7 @@ printStep('Create the Service wrapper.');
 $service = GeolocationFactory::create($client);
 
 printStep('Get suggestions.');
-$suggestions = $service->suggestions($exampleSuggestion, $exampleSuggestionAmount);
+$suggestions = $service->suggestions($suggestionsSearch, $suggestionsLimit);
 
 $table = new Table($output);
 $table->setHeaders(['Suggestions']);
