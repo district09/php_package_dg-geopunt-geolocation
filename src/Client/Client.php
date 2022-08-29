@@ -14,7 +14,6 @@ use Psr\Http\Message\RequestInterface;
  */
 final class Client extends AbstractClient
 {
-
     /**
      * Sends a Request and returns the appropriate Response.
      *

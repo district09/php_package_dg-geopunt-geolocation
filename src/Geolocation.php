@@ -35,7 +35,9 @@ final class Geolocation extends ServiceAbstract implements GeolocationInterface
         );
         $request = new SuggestionRequest($filters);
 
-        return $this->client()->send($request)->suggestions();
+        /** @var \DigipolisGent\Geopunt\Geolocation\Response\SuggestionResponse $response */
+        $response = $this->client()->send($request);
+        return $response->suggestions();
     }
 
     /**
@@ -55,7 +57,9 @@ final class Geolocation extends ServiceAbstract implements GeolocationInterface
 
         $request = new LocationRequest(new Filters(...$filters));
 
-        return $this->client()->send($request)->locations();
+        /** @var \DigipolisGent\Geopunt\Geolocation\Response\LocationResponse $response */
+        $response = $this->client()->send($request);
+        return $response->locations();
     }
 
     /**
@@ -74,7 +78,9 @@ final class Geolocation extends ServiceAbstract implements GeolocationInterface
         );
         $request = new LocationRequest($filters);
 
-        return $this->client()->send($request)->locations();
+        /** @var \DigipolisGent\Geopunt\Geolocation\Response\LocationResponse $response */
+        $response = $this->client()->send($request);
+        return $response->locations();
     }
 
     /**
@@ -93,7 +99,9 @@ final class Geolocation extends ServiceAbstract implements GeolocationInterface
         );
         $request = new LocationRequest($filters);
 
-        return $this->client()->send($request)->locations();
+        /** @var \DigipolisGent\Geopunt\Geolocation\Response\LocationResponse $response */
+        $response = $this->client()->send($request);
+        return $response->locations();
     }
 
     /**

@@ -9,5 +9,4 @@ namespace DigipolisGent\Geopunt\Geolocation\Value\Position;
  */
 final class Lambert72Point extends AbstractPoint
 {
-
 }

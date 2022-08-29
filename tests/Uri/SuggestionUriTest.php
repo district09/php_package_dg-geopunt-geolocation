@@ -16,7 +16,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SuggestionUriTest extends TestCase
 {
-
     /**
      * URI without filters.
      *
