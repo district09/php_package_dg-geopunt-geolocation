@@ -2,6 +2,11 @@
 
 /**
  * Example how to get the location details by a search string.
+ *
+ * @var string $apiEndpoint
+ * @var int $locationLimit
+ * @var float $locationBySearch
+ * @var \Symfony\Component\Console\Output\ConsoleOutput $output
  */
 
 declare(strict_types=1);

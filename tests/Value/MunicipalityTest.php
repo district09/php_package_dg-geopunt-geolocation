@@ -12,7 +12,6 @@ use PHPUnit\Framework\TestCase;
  */
 class MunicipalityTest extends TestCase
 {
-
     /**
      * Municipality can be created from postal code and name.
      *

@@ -12,7 +12,6 @@ use PHPUnit\Framework\TestCase;
  */
 class LocationUriTest extends TestCase
 {
-
     /**
      * URI without filters.
      *
