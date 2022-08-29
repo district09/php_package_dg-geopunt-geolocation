@@ -22,10 +22,10 @@
     ],
     "homepage": "https://github.com/district09/php_package_dg-geopunt-geolocation",
     "require": {
-        "php": "^7.4",
+        "php": "^7.4 || ^8.0",
         "ext-json": "*",
-        "digipolisgent/api-client": "^2.0",
-        "digipolisgent/value": "^2.0"
+        "digipolisgent/api-client": "^3.0",
+        "digipolisgent/value": "^3.0"
     },
     "require-dev": {
         "district09/qa-php": "^1.0.1"
