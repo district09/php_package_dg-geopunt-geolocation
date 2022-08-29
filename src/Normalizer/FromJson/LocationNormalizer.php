@@ -23,14 +23,14 @@ final class LocationNormalizer
     {
         $addressNormalizer = new AddressNormalizer();
         $positionNormalizer = new PositionNormalizer();
-        $boundingBoxNormalizer = new BoundingBoxNormalizer();
+        $boxNormalizer = new BoundingBoxNormalizer();
 
         return new Location(
             new LocationId($jsonData->ID),
             $jsonData->LocationType,
             $addressNormalizer->normalize($jsonData),
             $positionNormalizer->normalize($jsonData->Location),
-            $boundingBoxNormalizer->normalize($jsonData->BoundingBox)
+            $boxNormalizer->normalize($jsonData->BoundingBox)
         );
     }
 }

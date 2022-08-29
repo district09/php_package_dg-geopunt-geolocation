@@ -2,6 +2,12 @@
 
 /**
  * Example how to get the location details by reverse geocoding (lat-lon).
+ *
+ * @var string $apiEndpoint
+ * @var int $locationLimit
+ * @var float $locationLat
+ * @var float $locationLon
+ * @var \Symfony\Component\Console\Output\ConsoleOutput $output
  */
 
 declare(strict_types=1);

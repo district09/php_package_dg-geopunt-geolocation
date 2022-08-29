@@ -12,7 +12,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SuggestionTest extends TestCase
 {
-
     /**
      * Suggestion can be created from string.
      *

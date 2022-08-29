@@ -13,7 +13,6 @@ use PHPUnit\Framework\TestCase;
  */
 class AddressTest extends TestCase
 {
-
     /**
      * Address can be created from street name, house number, and municipality.
      *

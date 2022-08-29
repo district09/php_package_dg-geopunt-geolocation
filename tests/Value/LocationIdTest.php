@@ -13,7 +13,6 @@ use PHPUnit\Framework\TestCase;
  */
 class LocationIdTest extends TestCase
 {
-
     /**
      * Exception is thrown when value is not greater than 0.
      *

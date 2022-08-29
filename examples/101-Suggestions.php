@@ -2,6 +2,11 @@
 
 /**
  * Example how to get a list of address suggestions.
+ *
+ * @var string $apiEndpoint
+ * @var int $suggestionsLimit
+ * @var float $suggestionsSearch
+ * @var \Symfony\Component\Console\Output\ConsoleOutput $output
  */
 
 declare(strict_types=1);
